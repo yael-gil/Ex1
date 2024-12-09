@@ -47,22 +47,27 @@ public class Ex1 {
     public static boolean isNumber(String a) {
         boolean ans = true;
         // add your code here
-        String validChar = "123456789ABCDEFG";
+        String validChar = "0123456789ABCDEFG";
+        String num = "0123456789";
         char lastChar = a.charAt(a.length() - 1);
+        if (a.length() < 2 && num.contains(String.valueOf(lastChar))) {
+            return true;
+        } else if (a.length() < 2) {
+            return false;
+        }
         char secondToLest = a.charAt(a.length() - 2);
         char firstChar = a.charAt(0);
-        if (lastChar == '1' && secondToLest == 'b') {
-                ans = false;
-        }
-        if (firstChar == 0) {
-            ans = false;
+        if (firstChar == 'b' || firstChar == ' ') {
+            return false;
         }
         if (!validChar.contains(String.valueOf(lastChar)) && secondToLest != 'b') {
-            ans = false;
+            return false;
         }
         int index = validChar.indexOf(lastChar);
-        String currentString = validChar.substring(0 ,index -1);
-        for (int j = 0; j < a.length(); j++) {
+        int indexOf2 = a.length() -2;
+        String currentString = validChar.substring(0, index);
+        String currentString2 = a.substring(0, indexOf2);
+        for (int j = 0; j < currentString2.length(); j++) {
             char currant = a.charAt(j);
             if (!currentString.contains(String.valueOf(currant))) {
                 ans = false;
