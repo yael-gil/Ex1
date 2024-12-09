@@ -22,14 +22,19 @@ public class Ex1 {
     public static int number2Int(String num) {
         int ans = -1;
         // add your code here
-        String validChar = "123456789";
-        for (int i = 0; i < num.length(); i++) {
-            char current = num.charAt(i);
-            if (!validChar.contains(String.valueOf(current))) {
-                ans = -1;
-            } else
-                ans = Integer.parseInt(num);
+        if (!isNumber(num)) {
+            return ans;
         }
+        int currentInd = -1;
+        String ansStr = "";
+        char base = num.charAt(num.length() - 1);
+        for (int i = 0; i < num.length() - 2; i++) {
+            char current = num.charAt(i);
+            int currentNum = Character.getNumericValue(current);
+            currentInd = currentNum * (int) Math.pow(base, i);
+            ansStr = ansStr + currentInd;
+        }
+        ans = Short.parseShort(ansStr);
         return ans;
     }
 
@@ -42,10 +47,24 @@ public class Ex1 {
     public static boolean isNumber(String a) {
         boolean ans = true;
         // add your code here
-        String validChar = "123456789";
+        String validChar = "123456789ABCDEFG";
+        char lastChar = a.charAt(a.length() - 1);
+        char secondToLest = a.charAt(a.length() - 2);
+        char firstChar = a.charAt(0);
+        if (lastChar == '1' && secondToLest == 'b') {
+                ans = false;
+        }
+        if (firstChar == 0) {
+            ans = false;
+        }
+        if (!validChar.contains(String.valueOf(lastChar)) && secondToLest != 'b') {
+            ans = false;
+        }
+        int index = validChar.indexOf(lastChar);
+        String currentString = validChar.substring(0 ,index -1);
         for (int j = 0; j < a.length(); j++) {
             char currant = a.charAt(j);
-            if (!validChar.contains(String.valueOf(currant))) {
+            if (!currentString.contains(String.valueOf(currant))) {
                 ans = false;
             }
         }
@@ -79,6 +98,7 @@ public class Ex1 {
                 }
             }
             ans = String.valueOf(sum);
+            ans = ans + "b" + String.valueOf(base);
         }
         ////////////////////
         return ans;
@@ -140,5 +160,13 @@ public class Ex1 {
                 currentM = cNum % 10;
                 sum = sum + (int) Math.pow(currentM, i);
             }
+        }
+         String validChar = "123456789";
+        for (int i = 0; i < num.length(); i++) {
+            char current = num.charAt(i);
+            if (!validChar.contains(String.valueOf(current))) {
+                ans = -1;
+            } else
+                ans = Integer.parseInt(num);
         }
  */
