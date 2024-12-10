@@ -25,16 +25,17 @@ public class Ex1 {
         if (!isNumber(num)) {
             return ans;
         }
-        int currentInd = -1;
-        String ansStr = "";
+        int currentSum = 0;
         char base = num.charAt(num.length() - 1);
+        int base1 = Character.getNumericValue(base);
         for (int i = 0; i < num.length() - 2; i++) {
             char current = num.charAt(i);
             int currentNum = Character.getNumericValue(current);
-            currentInd = currentNum * (int) Math.pow(base, i);
-            ansStr = ansStr + currentInd;
+            int pow = (int) Math.pow(base1,num.length() - 3 - i);
+            int currentInd = currentNum * pow;
+            currentSum = currentSum + currentInd;
         }
-        ans = Short.parseShort(ansStr);
+        ans = currentSum;
         return ans;
     }
 
@@ -64,7 +65,7 @@ public class Ex1 {
             return false;
         }
         int index = validChar.indexOf(lastChar);
-        int indexOf2 = a.length() -2;
+        int indexOf2 = a.length() - 2;
         String currentString = validChar.substring(0, index);
         String currentString2 = a.substring(0, indexOf2);
         for (int j = 0; j < currentString2.length(); j++) {
