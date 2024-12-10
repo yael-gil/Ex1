@@ -98,13 +98,12 @@ public class Ex1 {
      */
     public static String int2Number(int num, int base) {
         String ans = "";
-
+        String numStr = String.valueOf(num);
         // add your code here
-        if (isNumber(String.valueOf(num)) && 2 <= base && base <= 16) {
-            String a = String.valueOf(num);
-            char lastChar = a.charAt(a.length() - 1);
-            char secondToLest = a.charAt(a.length() - 2);
-            if ((secondToLest == 'b' && lastChar == 'A') || !a.contains("b")) {
+        if (isNumber(numStr) && 2 <= base && base <= 16) {
+            char lastChar = numStr.charAt(numStr.length() - 1);
+            char secondToLest = numStr.charAt(numStr.length() - 2);
+            if ((secondToLest == 'b' && lastChar == 'A') || !numStr.contains("b")) {
                 int cNum = num;
                 int currentM;
                 int sum = 0;
