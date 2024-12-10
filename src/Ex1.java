@@ -57,23 +57,29 @@ public class Ex1 {
         String validChar = "0123456789ABCDEFG";
         String num = "0123456789";
         char lastChar = a.charAt(a.length() - 1);
-        if (lastChar == '0' || lastChar == '1') {
-            return false;
-        }
+
         if (a.length() < 2 && num.contains(String.valueOf(lastChar))) {
             return true;
         } else if (a.length() < 2) {
             return false;
         }
         char secondToLest = a.charAt(a.length() - 2);
+        if (lastChar == '0' || lastChar == '1' && secondToLest == 'b') {
+            return false;
+        }
         char firstChar = a.charAt(0);
         if (firstChar == 'b' || firstChar == ' ') {
             return false;
         }
-        if (!validChar.contains(String.valueOf(lastChar)) && secondToLest != 'b') {
+        if (!num.contains(String.valueOf(lastChar)) && secondToLest != 'b') {
             return false;
         }
-        int index = validChar.indexOf(lastChar);
+        int index = -1;
+        if (secondToLest == 'b') {
+            index = validChar.indexOf(lastChar);
+        } else {
+            index = 11;
+        }
         int indexOf2 = a.length() - 2;
         String currentString = validChar.substring(0, index);
         String currentString2 = a.substring(0, indexOf2);
@@ -105,24 +111,21 @@ public class Ex1 {
             char secondToLest = numStr.charAt(numStr.length() - 2);
             if ((secondToLest == 'b' && lastChar == 'A') || !numStr.contains("b")) {
                 int cNum = num;
-                int currentM;
-                int sum = 0;
-                int k = String.valueOf(num).length();
-                for (int i = 0; i <= k; i++) {
+                String currentString = "";
                     while (cNum != 0) {
-                        int c = cNum / base;
-                        currentM = c % 10;
-                        sum = sum + (int) Math.pow(currentM, i);
+                        int remainder = cNum % base; // חשב את השארית
+                       currentString = String.valueOf(remainder) + currentString; //הוסף את הספרה המתאימה
+                        cNum /= base; // חלק את המספר בבסיס
                     }
-                }
                 char base2 = ' ';
                 if (base >= 10) {
                     String base1 = "ABCDEFG";
-                    base2 = (char) base1.indexOf(base - 10);
+                    int indB = base1.indexOf(base -10);
+                    base2 = base1.charAt(indB);
                     } else {
-                    base2 = (char) base;
+                    base2 = (char) ('0' + base);
                     }
-                ans = String.valueOf(sum);
+                ans = currentString;
                 ans = ans + "b" + base2;
             }
         }
@@ -140,8 +143,12 @@ public class Ex1 {
     public static boolean equals(String n1, String n2) {
         boolean ans = true;
         // add your code here
-        for (int i = 0; i < n1.length(); i++) {
-            if (n1.charAt(i) != n2.charAt(i)) {
+        int n1d = number2Int(n1);
+        int n2d = number2Int(n2);
+        String n1ds = String.valueOf(n1d);
+        String n2ds = String.valueOf(n2d);
+        for (int i = 0; i < n1ds.length() -1; i++) {
+            if (n1ds.charAt(i) != n2ds.charAt(i)) {
                 ans = false;
             }
         }
