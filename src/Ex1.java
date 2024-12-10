@@ -64,7 +64,7 @@ public class Ex1 {
             return false;
         }
         char secondToLest = a.charAt(a.length() - 2);
-        if (lastChar == '0' || lastChar == '1' && secondToLest == 'b') {
+        if ((lastChar == '0' || lastChar == '1') && secondToLest == 'b') {
             return false;
         }
         char firstChar = a.charAt(0);
@@ -105,29 +105,32 @@ public class Ex1 {
     public static String int2Number(int num, int base) {
         String ans = "";
         String numStr = String.valueOf(num);
-        // add your code here
+        String abStr = "ABCDEFG";
+        String big = "";
         if (isNumber(numStr) && 2 <= base && base <= 16) {
-            char lastChar = numStr.charAt(numStr.length() - 1);
-            char secondToLest = numStr.charAt(numStr.length() - 2);
-            if ((secondToLest == 'b' && lastChar == 'A') || !numStr.contains("b")) {
-                int cNum = num;
-                String currentString = "";
-                    while (cNum != 0) {
-                        int remainder = cNum % base; // חשב את השארית
-                       currentString = String.valueOf(remainder) + currentString; //הוסף את הספרה המתאימה
-                        cNum /= base; // חלק את המספר בבסיס
-                    }
-                char base2 = ' ';
-                if (base >= 10) {
-                    String base1 = "ABCDEFG";
-                    int indB = base1.indexOf(base -10);
-                    base2 = base1.charAt(indB);
-                    } else {
-                    base2 = (char) ('0' + base);
-                    }
-                ans = currentString;
-                ans = ans + "b" + base2;
+            int cNum = num;
+            String currentString = "";
+            while (cNum != 0) {
+                int remainder = cNum % base;// חשב את השארית
+                if (remainder > 9) {
+                    int indBig = remainder - 10;
+                    big = String.valueOf(abStr.charAt(indBig));
+                } else {
+                    big = String.valueOf(remainder);
+                }
+
+                currentString = big + currentString; //הוסף את הספרה המתאימה
+                cNum /= base; // חלק את המספר בבסיס
+
             }
+            char base2 = ' ';
+            if (base >= 10) {
+                int indB = base - 10;
+                base2 = abStr.charAt(indB);
+            } else {
+                base2 = (char) ('0' + base);
+            }
+            ans = currentString + "b" + base2;
         }
         ////////////////////
         return ans;
@@ -147,7 +150,7 @@ public class Ex1 {
         int n2d = number2Int(n2);
         String n1ds = String.valueOf(n1d);
         String n2ds = String.valueOf(n2d);
-        for (int i = 0; i < n1ds.length() -1; i++) {
+        for (int i = 0; i < n1ds.length() - 1; i++) {
             if (n1ds.charAt(i) != n2ds.charAt(i)) {
                 ans = false;
             }

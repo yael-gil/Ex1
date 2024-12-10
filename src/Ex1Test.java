@@ -39,8 +39,22 @@ public class Ex1Test {
     @Test
     void int2NumberTest() {
         // implement this test
+        int a = 45;
+        int c = -234;
+        int d = 1010;
+        int b1 = 2;
+        int b2 = 10;
+        int b3 = 16;
+        int b4 = -2;
+        int b5 = 1;
+        assertEquals(Ex1.int2Number(a, b1 ), "101101b2");
+        assertEquals(Ex1.int2Number(c, b1 ), "");
+        assertEquals(Ex1.int2Number(a, b2 ), "45bA");
+        assertEquals(Ex1.int2Number(d, b3 ), "3F2bG");
+        assertEquals(Ex1.int2Number(d, b4 ), "");
+        assertEquals(Ex1.int2Number(d, b5 ), "");
+        }
 
-    }
 
     @Test
     void maxIndexTest() {
