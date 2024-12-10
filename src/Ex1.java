@@ -26,13 +26,19 @@ public class Ex1 {
             return ans;
         }
         int currentSum = 0;
+        String num1 = String.valueOf(num);
         String str = "ABCDEFG";
+
         int base1;
         char base = num.charAt(num.length() - 1);
-        if (str.contains(String.valueOf(base))) {
-            base1 = str.indexOf(base) + 10;
+        if (num1.contains("b")) {
+            if (str.contains(String.valueOf(base))) {
+                base1 = str.indexOf(base) + 10;
+            } else {
+                base1 = Character.getNumericValue(base);
+            }
         } else {
-            base1 = Character.getNumericValue(base);
+            base1 = 10;
         }
         for (int i = 0; i < num.length() - 2; i++) {
             char current = num.charAt(i);
