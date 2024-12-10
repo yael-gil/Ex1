@@ -57,6 +57,9 @@ public class Ex1 {
         String validChar = "0123456789ABCDEFG";
         String num = "0123456789";
         char lastChar = a.charAt(a.length() - 1);
+        if (lastChar == '0' || lastChar == '1') {
+            return false;
+        }
         if (a.length() < 2 && num.contains(String.valueOf(lastChar))) {
             return true;
         } else if (a.length() < 2) {
@@ -101,7 +104,7 @@ public class Ex1 {
             String a = String.valueOf(num);
             char lastChar = a.charAt(a.length() - 1);
             char secondToLest = a.charAt(a.length() - 2);
-            if (secondToLest == 'b' && lastChar == 'A' || !a.contains("b")) {
+            if ((secondToLest == 'b' && lastChar == 'A') || !a.contains("b")) {
                 int cNum = num;
                 int currentM;
                 int sum = 0;
@@ -113,8 +116,15 @@ public class Ex1 {
                         sum = sum + (int) Math.pow(currentM, i);
                     }
                 }
+                char base2 = ' ';
+                if (base >= 10) {
+                    String base1 = "ABCDEFG";
+                    base2 = (char) base1.indexOf(base - 10);
+                    } else {
+                    base2 = (char) base;
+                    }
                 ans = String.valueOf(sum);
-                ans = ans + "b" + String.valueOf(base);
+                ans = ans + "b" + base2;
             }
         }
         ////////////////////
