@@ -59,6 +59,12 @@ public class Ex1Test {
     @Test
     void maxIndexTest() {
         // implement this test
+        String [] a = {"12" , "23", "34", "56"};
+        String [] b = {"12b3" , "36664b7", "F3bG"};
+        String [] c = {"!" , "23", "FA3bG"};
+        assertEquals(Ex1.maxIndex(a), 3);
+        assertEquals(Ex1.maxIndex(b), 1);
+        assertEquals(Ex1.maxIndex(c), 2);
     }
 
     // Add additional test functions - test as much as you can.
