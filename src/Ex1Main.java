@@ -47,8 +47,6 @@ public class Ex1Main {
                     System.out.println("Max number over [" + num1 + ", " + num2 + ", " + sumStr + ", " + mulStr + "] is:" + arr[maxInd]);
                     continue;
                 }
-
-
                 /////////////////////
             }
         }

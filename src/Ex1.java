@@ -180,10 +180,9 @@ public class Ex1 {
         int maxInd = -1;
         int maxValue = Integer.MIN_VALUE;
         for (int i = 0; i < arr.length; i++) {
-            int currentValue = Integer.parseInt(arr[i]);
-            int d = number2Int(String.valueOf(currentValue));
-            if (currentValue >= maxValue) {
-                maxValue = currentValue;
+            int d = number2Int(arr[i]);
+            if (d >= maxValue) {
+                maxValue = d;
                 maxInd = i;
             }
         }
