@@ -22,26 +22,26 @@ public class Ex1 {
     public static int number2Int(String num) {
         int ans = -1;
         // add your code here
-        if (!isNumber(num)) {
+        if (!isNumber(num)) { // check if num is a valid number
             return ans;
         }
         int currentSum = 0;
         String str = "ABCDEFG";
 
         int base1 = 0;
-        char base = num.charAt(num.length() - 1);
-        if (num.contains("b")) {
+        char base = num.charAt(num.length() - 1); // save the MSb for the base
+        if (num.contains("b")) { // check if the num is in base A or another base
             if (str.contains(String.valueOf(base))) {
-                base1 = str.indexOf(base) + 10;
+                base1 = str.indexOf(base) + 10; // if the base is big then 9, save base1 as base + 10;
             } else {
                 base1 = Character.getNumericValue(base);
             }
-        } else {
+        } else { // base = 10, return the original number
             base1 = 10;
             ans = Integer.parseInt(num);
             return ans;
         }
-        for (int i = 0; i < num.length() - 2; i++) {
+        for (int i = 0; i < num.length() - 2; i++) { // calculate num to base 10
             char current = num.charAt(i);
             int currentNum = Character.getNumericValue(current);
             int pow = (int) Math.pow(base1, num.length() - 3 - i);
@@ -63,34 +63,34 @@ public class Ex1 {
         // add your code here
         String validChar = "0123456789ABCDEFG";
         String num = "0123456789";
-        char lastChar = a.charAt(a.length() - 1);
+        char lastChar = a.charAt(a.length() - 1); // save the MSB as a base
 
-        if (a.length() < 2 && num.contains(String.valueOf(lastChar))) {
+        if (a.length() < 2 && num.contains(String.valueOf(lastChar))) { // if a < 2, base must be 10
             return true;
         } else if (a.length() < 2) {
             return false;
         }
         char secondToLest = a.charAt(a.length() - 2);
-        if ((lastChar == '0' || lastChar == '1') && secondToLest == 'b') {
+        if ((lastChar == '0' || lastChar == '1') && secondToLest == 'b') { // base 1 or 0 not valid
             return false;
         }
         char firstChar = a.charAt(0);
-        if (firstChar == 'b' || firstChar == ' ') {
+        if (firstChar == 'b' || firstChar == ' ') { // not valid if there is none number
             return false;
         }
-        if (!num.contains(String.valueOf(lastChar)) && secondToLest != 'b') {
+        if (!num.contains(String.valueOf(lastChar)) && secondToLest != 'b') { // if there is none b, the number must be ib base 10
             return false;
         }
         int index = -1;
-        if (secondToLest == 'b') {
+        if (secondToLest == 'b') { // if there is b, take the index of lastChar
             index = validChar.indexOf(lastChar);
         } else {
             index = 11;
         }
-        int indexOf2 = a.length() - 2;
-        String currentString = validChar.substring(0, index);
-        String currentString2 = a.substring(0, indexOf2);
-        for (int j = 0; j < currentString2.length(); j++) {
+        int indexOf2 = a.length() - 2; // save the index of b
+        String currentString = validChar.substring(0, index); // take subString of validChar
+        String currentString2 = a.substring(0, indexOf2); // take subString of a
+        for (int j = 0; j < currentString2.length(); j++) { // check if the number is valid
             char currant = a.charAt(j);
             if (!currentString.contains(String.valueOf(currant))) {
                 ans = false;
@@ -118,16 +118,16 @@ public class Ex1 {
             int cNum = num;
             String currentString = "";
             while (cNum != 0) {
-                int remainder = cNum % base;// חשב את השארית
+                int remainder = cNum % base;// calculate the rest
                 if (remainder > 9) {
                     int indBig = remainder - 10;
-                    big = String.valueOf(abStr.charAt(indBig));
+                    big = String.valueOf(abStr.charAt(indBig)); // change the base signal to int
                 } else {
                     big = String.valueOf(remainder);
                 }
 
-                currentString = big + currentString; //הוסף את הספרה המתאימה
-                cNum /= base; // חלק את המספר בבסיס
+                currentString = big + currentString; // add the new int to the final string
+                cNum /= base; // div the num in base
 
             }
             char base2 = ' ';
