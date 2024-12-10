@@ -26,12 +26,18 @@ public class Ex1 {
             return ans;
         }
         int currentSum = 0;
+        String str = "ABCDEFG";
+        int base1;
         char base = num.charAt(num.length() - 1);
-        int base1 = Character.getNumericValue(base);
+        if (str.contains(String.valueOf(base))) {
+            base1 = str.indexOf(base) + 10;
+        } else {
+            base1 = Character.getNumericValue(base);
+        }
         for (int i = 0; i < num.length() - 2; i++) {
             char current = num.charAt(i);
             int currentNum = Character.getNumericValue(current);
-            int pow = (int) Math.pow(base1,num.length() - 3 - i);
+            int pow = (int) Math.pow(base1, num.length() - 3 - i);
             int currentInd = currentNum * pow;
             currentSum = currentSum + currentInd;
         }
@@ -92,19 +98,24 @@ public class Ex1 {
 
         // add your code here
         if (isNumber(String.valueOf(num)) && 2 <= base && base <= 16) {
-            int cNum = num;
-            int currentM;
-            int sum = 0;
-            int k = String.valueOf(num).length();
-            for (int i = 0; i <= k; i++) {
-                while (cNum != 0) {
-                    int c = cNum / base;
-                    currentM = c % 10;
-                    sum = sum + (int) Math.pow(currentM, i);
+            String a = String.valueOf(num);
+            char lastChar = a.charAt(a.length() - 1);
+            char secondToLest = a.charAt(a.length() - 2);
+            if (secondToLest == 'b' && lastChar == 'A' || !a.contains("b")) {
+                int cNum = num;
+                int currentM;
+                int sum = 0;
+                int k = String.valueOf(num).length();
+                for (int i = 0; i <= k; i++) {
+                    while (cNum != 0) {
+                        int c = cNum / base;
+                        currentM = c % 10;
+                        sum = sum + (int) Math.pow(currentM, i);
+                    }
                 }
+                ans = String.valueOf(sum);
+                ans = ans + "b" + String.valueOf(base);
             }
-            ans = String.valueOf(sum);
-            ans = ans + "b" + String.valueOf(base);
         }
         ////////////////////
         return ans;
