@@ -26,12 +26,11 @@ public class Ex1 {
             return ans;
         }
         int currentSum = 0;
-        String num1 = String.valueOf(num);
         String str = "ABCDEFG";
 
-        int base1;
+        int base1 = 0;
         char base = num.charAt(num.length() - 1);
-        if (num1.contains("b")) {
+        if (num.contains("b")) {
             if (str.contains(String.valueOf(base))) {
                 base1 = str.indexOf(base) + 10;
             } else {
@@ -39,6 +38,8 @@ public class Ex1 {
             }
         } else {
             base1 = 10;
+            ans = Integer.parseInt(num);
+            return ans;
         }
         for (int i = 0; i < num.length() - 2; i++) {
             char current = num.charAt(i);
@@ -180,6 +181,7 @@ public class Ex1 {
         int maxValue = Integer.MIN_VALUE;
         for (int i = 0; i < arr.length; i++) {
             int currentValue = Integer.parseInt(arr[i]);
+            int d = number2Int(String.valueOf(currentValue));
             if (currentValue >= maxValue) {
                 maxValue = currentValue;
                 maxInd = i;
