@@ -17,7 +17,6 @@ public class Ex1Main {
             num1 = sc.next();
             if (!num1.equals("quit")) {
                 // add your code here
-
                 System.out.println("num1=" + num1 + " is number:" + Ex1.isNumber(num1) + ",value:" + Ex1.number2Int(num1));
                 if (!Ex1.isNumber(num1)) {
                     System.out.println("ERR: num1 is in the wrong format! (" + num1 + ")");
